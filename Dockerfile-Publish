@@ -1,0 +1,18 @@
+# Use the appropriate base image for your application
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 8080
+
+# Copy all .dll files to the application directory
+COPY *.dll /app/
+COPY v5APIMain.xml /app/
+
+# Optionally, copy other necessary files like configuration files
+COPY appsettings*.json /app/
+COPY web.config /app/
+COPY wwwroot /app/wwwroot/
+COPY *.json /app/
+
+# Set the entry point for the application
+ENTRYPOINT ["dotnet", "v5APIMain.dll"]
+#####################################################       For Publish                ##########################################
